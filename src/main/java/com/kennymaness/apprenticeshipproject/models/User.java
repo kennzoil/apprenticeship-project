@@ -1,0 +1,35 @@
+package com.kennymaness.apprenticeshipproject.models;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class User extends AbstractEntity {
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @NotNull
+    private String username;
+
+    @NotNull
+    private String pwhash;
+
+    public User() {}
+
+    // constructor
+    public User(String username, String password) {
+        this.username = username;
+        this.pwhash = encoder.encode(password);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwhash);
+    }
+
+}
