@@ -3,6 +3,8 @@ package com.kennymaness.apprenticeshipproject.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PreUpdate;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -27,6 +29,11 @@ public abstract class AbstractEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        ZonedDateTime updatedAt = ZonedDateTime.now();
     }
 
 }
