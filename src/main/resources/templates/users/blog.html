@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<div>
+<p th:text="${username}"></p>
+</div>
+
+<!-- TODO: make it so you can see if a post has been edited -->
+<div>
+    <div th:each="blogpost : ${blogposts}">
+        <h3 th:text="${blogpost.title}"></h3>
+        <span th:if="${isSameUser}">
+            <button>
+                <a th:href="@{'/blogposts/edit/' + ${blogpost.id}}">Edit</a>
+            </button>
+            <form method="get" action="/blogposts/delete"><button>
+                <a th:href="@{'/blogposts/delete/' + ${blogpost.id}}">Delete</a>
+            </button></form>
+        </span>
+        <p th:text="${blogpost.submission_date}"></p>
+        <p th:text="${blogpost.body}"></p>
+    </div>
+</div>
+
+<nav th:replace="fragments :: navigation"></nav>
+</body>
+</html>

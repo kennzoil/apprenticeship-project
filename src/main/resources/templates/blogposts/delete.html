@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<div>
+    <h3 th:text="${title}"></h3>
+    <p th:text="${body}"></p>
+</div>
+<form method="post" action="/blogposts/delete">
+    <input name="blogpostId" th:value="${blogpostId}" type="hidden">
+    <input type="submit" value="Delete Blog Post!">
+</form>
+
+<nav th:replace="fragments :: navigation"></nav>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<p th:unless="${users} and ${users.size()}">No Users!!</p>
+<div></div>
+<div>
+<table class="pure-table pure-table-bordered">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Link to Blog</th>
+    </tr>
+    </thead>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+
+        <form method="post" action="/users/blog">
+            <input name="user_id" th:value="${user_id}" type="hidden">
+        <td class="nav-item">
+            <a type="submit" class="nav-link" th:href="@{'/users/blog/' + ${user.id}}">
+            <span th:text="${user.username} + '\'s blog posts'"></span></a>
+        </td>
+        </form>
+
+    </tr>
+</table>
+</div>
+
+<nav th:replace="fragments :: navigation"></nav>
+</body>
+</html>

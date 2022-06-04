@@ -4,6 +4,7 @@ import com.kennymaness.apprenticeshipproject.controllers.AuthenticationControlle
 import com.kennymaness.apprenticeshipproject.data.UserRepository;
 import com.kennymaness.apprenticeshipproject.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class AuthenticationFilter extends HandlerInterceptorAdapter {
+public class AuthenticationFilter implements HandlerInterceptor {
 
     @Autowired
     UserRepository userRepository;
