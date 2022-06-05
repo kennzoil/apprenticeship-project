@@ -12,27 +12,30 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
-@RequestMapping("blogposts")
+@RequestMapping
 public class BlogPostController {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private BlogPostRepository blogPostRepository;
-
     @Autowired
     private AuthenticationController authenticationController;
 
-    @GetMapping("/")
-    public String renderBlogpostForm() {
 
-        return "blogposts";
+    @GetMapping("blogposts")
+    public String renderBlogpostForm(Model model) {
+        List<BlogPost> allBlogposts = (List<BlogPost>) blogPostRepository.findAll();
+
+        model.addAttribute("allBlogposts", allBlogposts);
+
+        return "blogposts/index";
     }
 
-    @GetMapping("create")
+    @GetMapping("blogposts/create")
     public String renderCreateBlogpostForm(Model model) {
 
         model.addAttribute("title", "Create a Post");
@@ -40,7 +43,7 @@ public class BlogPostController {
         return "blogposts/create";
     }
 
-    @PostMapping("create")
+    @PostMapping("blogposts/create")
     public String processCreateBlogpostForm(HttpServletRequest request,
                                             Model model,
                                             BlogPost newBlogpost){
@@ -53,10 +56,10 @@ public class BlogPostController {
                 newBlogpost.getBody(),
                 author));
 
-        return "blogposts/index";
+        return "redirect:users/blog/" + author.getId();
     }
 
-    @GetMapping("edit/{blogpostId}")
+    @GetMapping("blogposts/edit/{blogpostId}")
     public String renderEditBlogpostForm(Model model,
                                          @PathVariable int blogpostId) {
 
@@ -69,18 +72,18 @@ public class BlogPostController {
         return "blogposts/edit";
     }
 
-    @PostMapping("edit")
+    @PostMapping("blogposts/edit")
     public String processEditBlogpostForm(int blogpostId, String title, String body) {
 
         BlogPost blogPost = blogPostRepository.findById(blogpostId);
         blogPost.setTitle(title);
         blogPost.setBody(body);
         blogPostRepository.save(blogPost);
-        return "blogposts/index";
+        return "redirect:";
     }
 
     // TODO: Implement soft deletion! https://www.baeldung.com/delete-with-hibernate
-    @GetMapping("delete/{blogpostId}")
+    @GetMapping("blogposts/delete/{blogpostId}")
     public String processDeleteBlogpostForm(HttpServletRequest request,
                                             Model model,
                                             @PathVariable int blogpostId) {
@@ -97,11 +100,11 @@ public class BlogPostController {
         return "blogposts/delete";
     }
 
-    @PostMapping("delete")
+    @PostMapping("blogposts/delete")
     public String processDeleteBlogpostForm(int blogpostId) {
         BlogPost blogPost = blogPostRepository.findById(blogpostId);
         blogPostRepository.delete(blogPost);
-        return "blogposts/index";
+        return "redirect:";
     }
 
 }

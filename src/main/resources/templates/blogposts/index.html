@@ -3,9 +3,30 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-
-<div><h1>This is the Blogpost Page!!! Wow!</h1></div>
-
 <nav th:replace="fragments :: navigation"></nav>
+
+<div class="w3-container"><h1>Everybody's blogs!</h1></div>
+
+<div class="w3-col l8 s12">
+    <div class="w3-card-4 w3-margin w3-white" th:each="blogpost : ${allBlogposts}">
+        <div class="w3-container">
+            <div><a th:href="@{'/users/post/' + ${blogpost.id}}"><h3 th:text="${blogpost.title}"></h3></a></div>
+            <span th:if="${isSameUser}">
+            <button>
+                <a th:href="@{'/blogposts/edit/' + ${blogpost.id}}">Edit</a>
+            </button>
+            <button>
+                <a th:href="@{'/blogposts/delete/' + ${blogpost.id}}">Delete</a>
+            </button>
+        </span>
+            <h4 class="w3-opacity" th:text="'written by ' + ${blogpost.user.username}"></h4>
+            <h5 class="w3-opacity" th:text="${blogpost.submission_date}"></h5>
+        </div>
+        <div class="w3-container">
+            <p th:text="${blogpost.body}"></p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

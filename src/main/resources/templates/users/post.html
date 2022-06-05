@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<header class="w3-container w3-center w3-padding-32">
+    <p><span class="w3-tag" th:text="${title}"></span></p>
+    <p>by <a th:href="@{'/users/blog/' + ${author_id}}">
+        <span class="w3-tag" th:text="${author_username}"></span></a></p>
+</header>
+
+<div class="w3-col l8 s12">
+
+    <div class="w3-container">
+        <span th:if="${belongsToThisUser}">
+            <button>
+                <a th:href="@{'/blogposts/edit/' + ${blogpost.id}}">Edit</a>
+            </button>
+            <button>
+                <a th:href="@{'/blogposts/delete/' + ${blogpost.id}}">Delete</a>
+            </button>
+        </span>
+        <h5 class="w3-opacity" th:text="${submission_date}"></h5>
+    </div>
+    <div class="w3-container">
+        <p th:text="${body}"></p>
+    </div>
+
+    <div class="w3-card-4 w3-margin w3-white">
+        <form method="post">
+<!--            <input class="form-control" type="hidden" th:field="${author}">-->
+            <input class="form-control" type="hidden" th:field="${comment.blogpost}">
+            <div class="w3-container"><h5 class="w3-opacity">Write a comment</h5></div>
+            <div class="w3-container"><input class="form-control" size="50" th:field="${comment.body}"/></div>
+            <div class="w3-container"><input type="submit" value="submit comment"></div>
+        </form>
+    </div>
+
+    <div class="w3-card-4 w3-margin w3-white" th:each="comment : ${comments}">
+        <div class="w3-container"><h4 class="w3-opacity" th:text="${comment.user.username}"></h4></div>
+        <div class="w3-container"><h5 class="w3-opacity" th:text="${comment.submission_date}"></h5></div>
+
+        <!-- TODO: Edit and delete user comments -->
+        <div class="w3-container">
+        <span th:if="${comment.user.id == author_id}">
+            <button>Edit</button>
+            <button>Delete</button>
+            (These don't work yet!)
+        </span>
+        </div>
+        <!-- ----------------------------------- -->
+
+        <div class="w3-container">
+            <p th:text="${comment.body}"></p>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

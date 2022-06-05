@@ -3,9 +3,18 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
+<nav th:replace="fragments :: navigation"></nav>
 
     <div><h1>This is the homepage</h1></div>
 
-    <nav th:replace="fragments :: navigation"></nav>
+    <div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hWuX5K2pL5I"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+
+    </iframe>
+    </div>
+
 </body>
 </html>

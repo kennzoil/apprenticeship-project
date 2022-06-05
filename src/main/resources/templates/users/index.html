@@ -2,11 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
+<nav th:replace="fragments :: navigation"></nav>
+
 
 <p th:unless="${users} and ${users.size()}">No Users!!</p>
 <div></div>
 <div>
-<table class="pure-table pure-table-bordered">
+<table class="w3-table">
     <thead>
     <tr>
         <th>Username</th>
@@ -28,6 +30,5 @@
 </table>
 </div>
 
-<nav th:replace="fragments :: navigation"></nav>
 </body>
 </html>

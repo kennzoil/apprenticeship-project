@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-
 <body>
+<nav th:replace="fragments :: navigation"></nav>
+
 <div>
     <h1>Write a Blog Post</h1>
 </div>
 
-<div>
+<div class="w3-card-4 w3-margin w3-white">
 <form method="post">
     <div class="form-group">
         <label>Blog Post Title
@@ -16,7 +17,7 @@
     </div>
     <div class="form-group">
         <label>Write your blog post here
-            <textarea th:field="${blogpost.body}" class="form-control"></textarea>
+            <textarea wrap="hard" th:field="${blogpost.body}" class="form-control"></textarea>
         </label>
     </div>
     <div class="form-group">
@@ -25,7 +26,5 @@
 </form>
 </div>
 
-
-<nav th:replace="fragments :: navigation"></nav>
 </body>
 </html>

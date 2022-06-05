@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
+<nav th:replace="fragments :: navigation"></nav>
 
 <h1>Edit Blogpost</h1>
 
@@ -16,7 +17,7 @@
     </div>
     <div class="form-group">
         <label>Body
-            <textarea name="body" class="form-control" th:value="${body}"></textarea>
+            <textarea wrap="hard" name="body" class="form-control" th:value="${body}"></textarea>
         </label>
     </div>
     <div class="form-group">
@@ -25,6 +26,5 @@
 
 </form>
 
-<nav th:replace="fragments :: navigation"></nav>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
+<nav th:replace="fragments :: navigation"></nav>
 
 <div>
     <h3 th:text="${title}"></h3>
@@ -12,6 +13,5 @@
     <input type="submit" value="Delete Blog Post!">
 </form>
 
-<nav th:replace="fragments :: navigation"></nav>
 </body>
 </html>
