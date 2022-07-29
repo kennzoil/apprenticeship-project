@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -27,8 +28,11 @@ public class BlogPostController {
 
 
     @GetMapping("blogposts")
+//    @PostMapping("blogposts")
     public String renderBlogpostForm(Model model) {
         List<BlogPost> allBlogposts = (List<BlogPost>) blogPostRepository.findAll();
+
+        // TODO: sort allBlogposts by submission date
 
         model.addAttribute("allBlogposts", allBlogposts);
 
@@ -56,7 +60,7 @@ public class BlogPostController {
                 newBlogpost.getBody(),
                 author));
 
-        return "redirect:users/blog/" + author.getId();
+        return "redirect:";
     }
 
     @GetMapping("blogposts/edit/{blogpostId}")

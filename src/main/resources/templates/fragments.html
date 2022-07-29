@@ -17,31 +17,29 @@
 
 <!-- Navigation fragment -->
 <nav th:fragment="navigation">
-    <div class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-        <a class="nav-link" href="/">
-            <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Home</button>
-        </a>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar" id="myNavbar">
+            <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a class="w3-button w3-black" href="/">Home</a>
+            <a class="w3-button w3-black" href="/login">Login</a>
+            <a class="w3-button w3-black" href="/logout">Logout</a>
+            <a class="w3-button w3-black" href="/users">All Users</a>
+            <a class="w3-button w3-black" href="/blogposts">The Blog</a>
+            <a class="w3-button w3-black" href="/blogposts/create">Write a Post</a>
+        </div>
 
-        <a class="nav-link" href="/login">
-            <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Login</button>
-        </a>
-
-        <a class="nav-link" href="/logout">
-            <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Logout</button>
-        </a>
-
-        <a class="nav-link" href="/users">
-            <button class="w3-button w3-black w3-padding-large w3-margin-bottom">All Users</button>
-        </a>
-
-        <a class="nav-link" href="/blogposts">
-            <button class="w3-button w3-black w3-padding-large w3-margin-bottom">All Blog Posts</button>
-        </a>
-
-        <a class="nav-link" href="/blogposts/create">
-            <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Write a Blog Post</button>
-        </a>
-
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+            <a class="w3-button w3-black" href="/">Home</a>
+            <a class="w3-button w3-black" href="/login">Login</a>
+            <a class="w3-button w3-black" href="/logout">Logout</a>
+            <a class="w3-button w3-black" href="/users">All Users</a>
+            <a class="w3-button w3-black" href="/blogposts">The Blog</a>
+            <a class="w3-button w3-black" href="/blogposts/create">Write a Post</a>
+        </div>
     </div>
 </nav>
 <!-- -->

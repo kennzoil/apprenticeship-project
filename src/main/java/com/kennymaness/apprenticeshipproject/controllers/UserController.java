@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -45,9 +46,12 @@ public class UserController {
         HttpSession session = request.getSession();
         User thisUser = authenticationController.getUserFromSession(session);
 
+        List<BlogPost> blogPosts = user.getBlogposts();
+        // TODO: sort blogPosts by submission date
+
         model.addAttribute("user_id", user.getId());
         model.addAttribute("username", user.getUsername());
-        model.addAttribute("blogposts", user.getBlogposts());
+        model.addAttribute("blogposts", blogPosts);
         model.addAttribute("title", user.getUsername());
 
         boolean isSameUser = thisUser.getId() == user.getId();
